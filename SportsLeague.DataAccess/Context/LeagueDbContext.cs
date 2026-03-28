@@ -9,7 +9,6 @@ public class LeagueDbContext : DbContext
         : base(options)
     {
     }
-
     public DbSet<Team> Teams => Set<Team>();
     public DbSet<Referee> Referees => Set<Referee>();              
     public DbSet<Tournament> Tournaments => Set<Tournament>();    
@@ -162,8 +161,7 @@ public class LeagueDbContext : DbContext
                   .IsRequired(false)
                   .HasMaxLength(500);
             entity.Property(s => s.Category)
-                  .IsRequired(false)
-                  .HasMaxLength(100);
+                  .IsRequired();
             entity.Property(s => s.CreatedAt)
                   .IsRequired();
             entity.Property(s => s.UpdatedAt)
@@ -177,10 +175,6 @@ public class LeagueDbContext : DbContext
                   .HasColumnType("decimal(18,2)");
             entity.Property(ts => ts.JoinedAt)
                   .IsRequired();
-            entity.Property(ts => ts.CreatedAt)
-                  .IsRequired();
-            entity.Property(ts => ts.UpdatedAt)
-                  .IsRequired(false);
             // Relación con Tournament
             entity.HasOne(ts => ts.Tournament)
                   .WithMany(t => t.TournamentSponsors)
