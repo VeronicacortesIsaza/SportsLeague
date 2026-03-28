@@ -35,11 +35,6 @@ public class SponsorService : ISponsorService
     }
     public async Task<Sponsor> CreateAsync(Sponsor sponsor)
     {
-        // Validacion de email
-        if (!Regex.IsMatch(sponsor.ContactEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-        {
-            throw new InvalidOperationException("Invalid email format");
-        }
         // Validación de negocio: nombre único
         var existingSponsor = await _sponsorRepository.GetByNameAsync(sponsor.Name);
         if (existingSponsor != null)
@@ -48,6 +43,7 @@ public class SponsorService : ISponsorService
             throw new InvalidOperationException(
                 $"Ya existe un patrocinador con el nombre '{sponsor.Name}'");
         }
+        // Validacion de email
         if (!Regex.IsMatch(sponsor.ContactEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
         {
             throw new InvalidOperationException("Invalid email format");
