@@ -43,12 +43,11 @@ public class SponsorService : ISponsorService
             throw new InvalidOperationException(
                 $"Ya existe un patrocinador con el nombre '{sponsor.Name}'");
         }
-        // Validacion de email
+        // Validación de email
         if (!Regex.IsMatch(sponsor.ContactEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
         {
             throw new InvalidOperationException("Invalid email format");
         }
-
 
         _logger.LogInformation("Creating sponsor: {SponsorName}", sponsor.Name);
         return await _sponsorRepository.CreateAsync(sponsor);
