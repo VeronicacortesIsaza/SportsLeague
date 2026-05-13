@@ -38,7 +38,8 @@ builder.Services.AddScoped<ICardRepository, CardRepository>();
 builder.Services.AddScoped<IMatchEventService, MatchEventService>();
 builder.Services.AddScoped<MatchValidationHelper>();
 
-
+// ── Services (agregar) ──
+builder.Services.AddScoped<IStandingsService, StandingsService>();
 
 // ── Services ──
 builder.Services.AddScoped<ITeamService, TeamService>();
