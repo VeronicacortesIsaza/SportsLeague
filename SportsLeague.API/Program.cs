@@ -23,6 +23,8 @@ builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
 builder.Services.AddScoped<ITournamentTeamRepository, TournamentTeamRepository>();
 builder.Services.AddScoped<ISponsorRepository, SponsorRepository>();
 builder.Services.AddScoped<ITournamentSponsorRepository, TournamentSponsorRepository>();
+builder.Services.AddScoped<IMatchLineupRepository, MatchLineupRepository>();
+builder.Services.AddScoped<IMatchLineupService, MatchLineupService>();
 // ── Repositories (agregar) ──
 builder.Services.AddScoped<IMatchRepository, MatchRepository>();
 

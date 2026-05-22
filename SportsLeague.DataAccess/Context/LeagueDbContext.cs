@@ -20,7 +20,7 @@ public class LeagueDbContext : DbContext
     public DbSet<MatchResult> MatchResults => Set<MatchResult>();
     public DbSet<Goal> Goals => Set<Goal>();
     public DbSet<Card> Cards => Set<Card>();
-
+    public DbSet<MatchLineup> MatchLineups { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -294,6 +294,11 @@ public class LeagueDbContext : DbContext
                   .HasForeignKey(c => c.PlayerId)
                   .OnDelete(DeleteBehavior.Restrict);
         });
+
+        // --- MatchLineup ---
+        modelBuilder.Entity<MatchLineup>()
+            .HasIndex(ml => new { ml.MatchId, ml.PlayerId })
+            .IsUnique();
 
     }
 }
